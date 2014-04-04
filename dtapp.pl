@@ -38,7 +38,7 @@ else {
     # connect to database
     use DBI;
     my $dbh = DBI->connect( "dbi:SQLite:database.db", "", "" )
-      or die "Could not connect";
+      or croak "Could not connect: $!";
 
     # shortcut for use in template
     helper db => sub { $dbh };
@@ -78,9 +78,9 @@ else {
     # setup route which receives data and returns to /
     post '/insert' => sub {
         my $self = shift;
-        my $name = $self->param('name');
+        my $user = $self->param('name');
         my $age  = $self->param('age');
-        $insert->execute( $name, $age );
+        $insert->execute( $user, $age );
         $self->redirect_to('/');
     };
 
