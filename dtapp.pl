@@ -56,13 +56,24 @@ __DATA__
 <html>
   <head>
         <title><%= config 'name' %></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
   </head>
   <body>
-  <h1><%= config 'name' %></h1>
-  <div>This is a <%= config 'name' %> application.</div>
-  <div><a href="/kill">Quit</a></div>
-  <%= content %>
+    <h1><%= config 'name' %></h1>
+    <div class="well">This is a <%= config 'name' %> application.</div>
+    <div><a class="btn btn-sm btn-danger" href="/kill">Quit</a></div>
+    <%= content %>
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
 
