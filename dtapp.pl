@@ -56,9 +56,15 @@ else {
         $self->res->code(301);
         $self->redirect_to('http://www.google.com');
         $self->app->log->debug("Goodbye, $name.");
-
+      
         # I need this function to return so I delay the kill a little.
-        system("(sleep 1; kill $me)&");
+        #  
+        # system("(sleep 1; kill $me)&");
+        #
+        # Another way proposed by Joel Berger:
+        # http://stackoverflow.com/questions/22871601/how-do-i-properly-shut-down-a-mojoliciouslite-server
+        #
+       	$self->tx->on( finish => sub {exit} );
     };
 
     my $insert;
@@ -83,7 +89,7 @@ else {
         $insert->execute( $user, $age );
         $self->redirect_to('/');
     };
-
+    app->secrets(["Don't tell anyone"]);
     app->start( 'daemon', '-l', $url );
 }
 
