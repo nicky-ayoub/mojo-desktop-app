@@ -15,7 +15,7 @@ use Browser::Open qw( open_browser );
 # 
 # http://blogs.perl.org/users/joel_berger/2012/10/a-simple-mojoliciousdbi-example.html
 #
-my $port = Mojo::IOLoop->generate_port;
+my $port = Mojo::IOLoop::Server->generate_port;
 my $url  = "http://127.0.0.1:$port";
 
 my $me = $$;
@@ -71,7 +71,7 @@ else {
     while (1) {    # Repeat forever until disk space is available.
 
         # create insert statement
-        $insert = eval { $dbh->prepare('INSERT INTO people VALUES (?,?)') };
+       my $insert = eval { $dbh->prepare('INSERT INTO people VALUES (?,?)') };
 
         # break out of loop if statement prepared
         last if $insert;
